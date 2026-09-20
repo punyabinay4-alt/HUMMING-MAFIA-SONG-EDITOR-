@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUMMING MAFIA — DJ Audio Studio</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,sans-serif;
+  background:#080808;color:#fff;min-height:100vh;
+}
+.container{max-width:900px;margin:auto;padding:22px}
+header{text-align:center;padding:25px 0}
+.logo{
+  font-size:clamp(34px,8vw,62px);font-weight:900;
+  letter-spacing:4px;
+  background:linear-gradient(90deg,#ff1744,#ff9100,#ffe600);
+  -webkit-background-clip:text;color:transparent;
+}
+.subtitle{color:#aaa;margin-top:8px}
+.card{
+  background:#121212;border:1px solid #292929;border-radius:18px;
+  padding:20px;margin-bottom:18px;box-shadow:0 10px 35px #0008;
+}
+h2{font-size:18px;margin-bottom:15px}
+.upload{
+  border:2px dashed #444;border-radius:15px;padding:35px 15px;
+  text-align:center;cursor:pointer;background:#0d0d0d;
+}
+.upload:hover{border-color:#ff1744}
+input[type=file]{display:none}
+.btn{
+  border:0;border-radius:10px;padding:12px 18px;font-weight:bold;
+  cursor:pointer;background:#ff1744;color:white;
+}
+.btn.secondary{background:#292929}
+.btn.orange{background:#ff9100;color:#111}
+.btn.green{background:#00c853}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.control label{display:flex;justify-content:space-between;color:#bbb;font-size:13px;margin-bottom:7px}
+input[type=range]{width:100%;accent-color:#ff1744}
+input[type=text],select,input[type=number]{
+ width:100%;padding:12px;background:#090909;border:1px solid #333;
+ border-radius:9px;color:#fff;outline:none;
+}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.wave{
+ height:90px;background:#090909;border-radius:12px;margin:15px 0;
+ display:flex;align-items:center;justify-content:center;color:#666;
+ overflow:hidden;
+}
+canvas{width:100%;height:100%}
+.tag{
+ display:grid;grid-template-columns:90px 1fr 140px 40px;gap:8px;
+ align-items:center;margin-bottom:9px;
+}
+.tag button{height:40px;border:0;border-radius:8px;background:#333;color:#fff;cursor:pointer}
+.status{color:#aaa;font-size:13px;margin-top:10px;min-height:18px}
+audio{width:100%;margin-top:15px}
+@media(max-width:650px){
+ .controls{grid-template-columns:1fr}
+ .tag{grid-template-columns:70px 1fr 105px 40px}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <div class="logo">HUMMING MAFIA</div>
+  <div class="subtitle">DJ Humming • Bass • Voice Tag Studio</div>
+</header>
+
+<div class="card">
+<h2>🎵 Upload Your Song</h2>
+<label class="upload" for="songFile">
+  <div style="font-size:38px">🎧</div>
+  <b id="fileName">Tap to select MP3 / WAV</b>
+  <div style="color:#777;margin-top:6px">Your audio stays in this browser</div>
+</label>
+<input id="songFile" type="file" accept="audio/*">
+<audio id="originalPlayer" controls style="display:none"></audio>
+</div>
+
+<div class="card">
+<h2>🎚️ DJ Sound Effects</h2>
+
+<div class="controls">
+
+<div class="control">
+<label>Humming <span id="humVal">35%</span></label>
+<input id="humming" type="range" min="0" max="100" value="35">
+</div>
+
+<div class="control">
+<label>Bass <span id="bassVal">45%</span></label>
+<input id="bass" type="range" min="0" max="100" value="45">
+</div>
+
+<div class="control">
+<label>Echo <span id="echoVal">20%</span></label>
+<input id="echo" type="range" min="0" max="100" value="20">
+</div>
+
+<div class="control">
+<label>Reverb <span id="reverbVal">15%</span></label>
+<input id="reverb" type="range" min="0" max="100" value="15">
+</div>
+
+<div class="control">
+<label>Master Volume <span id="volumeVal">100%</span></label>
+<input id="volume" type="range" min="0" max="150" value="100">
+</div>
+
+<div class="control">
+<label>Humming Tone <span id="toneVal">50%</span></label>
+<input id="tone" type="range" min="0" max="100" value="50">
+</div>
+
+</div>
+
+<div class="row" style="margin-top:18px">
+<button class="btn" id="previewBtn">▶ Preview Effects</button>
+<button class="btn secondary" id="stopBtn">■ Stop</button>
+</div>
+</div>
+
+<div class="card">
+<h2>🎤 DJ Voice Tags</h2>
+
+<input id="artistName" type="text" placeholder="Your DJ / Artist Name">
+
+<div id="tags" style="margin-top:15px"></div>
+
+<button class="btn orange" id="addTag">＋ Add Voice Tag</button>
+
+<div class="status" id="voiceStatus"></div>
+</div>
+
+<div class="card">
+<h2>🔊 Voice Settings</h2>
+
+<div class="controls">
+
+<div class="control">
+<label>Voice Style</label>
+<select id="voiceStyle">
+<option value="male">Deep Male DJ</option>
+<option value="female">Female DJ</option>
+<option value="robot">Robot</option>
+<option value="radio">Radio Announcer</option>
+</select>
+</div>
+
+<div class="control">
+<label>Voice Volume <span id="voiceVolVal">100%</span></label>
+<input id="voiceVol" type="range" min="0" max="150" value="100">
+</div>
+
+<div class="control">
+<label>Voice Pitch <span id="pitchVal">1.0</span></label>
+<input id="pitch" type="range" min="0.5" max="1.5" step="0.05" value="1">
+</div>
+
+<div class="control">
+<label>Voice Speed <span id="speedVal">1.0</span></label>
+<input id="speed" type="range" min="0.5" max="1.5" step="0.05" value="1">
+</div>
+
+</div>
+</div>
+
+<div class="card">
+<h2>〽️ Audio Waveform</h2>
+<div class="wave"><canvas id="waveCanvas"></canvas></div>
+
+<button class="btn green" id="processBtn" style="width:100%">
+⚡ Generate HUMMING MAFIA Mix
+</button>
+
+<div class="status" id="status"></div>
+<audio id="outputPlayer" controls style="display:none"></audio>
+
+<button class="btn" id="downloadBtn" style="display:none;width:100%;margin-top:12px">
+⬇ Download Final Audio
+</button>
+</div>
+
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+
+let audioCtx=null;
+let source=null;
+let gainNode=null;
+let analyser=null;
+let currentFile=null;
+let animation=null;
+let outputURL=null;
+
+const ranges=[
+ ["humming","humVal"],["bass","bassVal"],["echo","echoVal"],
+ ["reverb","reverbVal"],["volume","volumeVal"],
+ ["tone","toneVal"],["voiceVol","voiceVolVal"],
+ ["pitch","pitchVal"],["speed","speedVal"]
+];
+
+ranges.forEach(([a,b])=>{
+  $(a).addEventListener("input",()=>{
+    $(b).textContent=$(a).value+(["pitch","speed"].includes(a)?"":"%");
+    if(a==="pitch"||a==="speed")$(b).textContent=Number($(a).value).toFixed(2);
+  });
+});
+
+$("songFile").addEventListener("change",e=>{
+  currentFile=e.target.files[0];
+  if(!currentFile)return;
+
+  $("fileName").textContent=currentFile.name;
+  const url=URL.createObjectURL(currentFile);
+  $("originalPlayer").src=url;
+  $("originalPlayer").style.display="block";
+
+  drawFakeWave();
+});
+
+function drawFakeWave(){
+ const c=$("waveCanvas"),ctx=c.getContext("2d");
+ c.width=c.clientWidth*2;c.height=c.clientHeight*2;
+ ctx.clearRect(0,0,c.width,c.height);
+ ctx.strokeStyle="#ff1744";ctx.lineWidth=3;
+ ctx.beginPath();
+ for(let x=0;x<c.width;x++){
+   let y=c.height/2+
+     Math.sin(x*.025)*20+
+     Math.sin(x*.071)*10+
+     (Math.random()-.5)*15;
+   ctx.lineTo(x,y);
+ }
+ ctx.stroke();
+}
+
+window.addEventListener("resize",drawFakeWave);
+
+async function initAudio(){
+ if(audioCtx)return;
+ audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+}
+
+$("previewBtn").onclick=async()=>{
+ if(!currentFile){
+   alert("Please upload a song first.");
+   return;
+ }
+
+ await initAudio();
+
+ if(source)try{source.stop()}catch(e){}
+
+ const buffer=await audioCtx.decodeAudioData(await currentFile.arrayBuffer());
+ source=audioCtx.createBufferSource();
+ source.buffer=buffer;
+
+ gainNode=audioCtx.createGain();
+ analyser=audioCtx.createAnalyser();
+ analyser.fftSize=256;
+
+ source.connect(gainNode);
+ gainNode.connect(analyser);
+ analyser.connect(audioCtx.destination);
+
+ gainNode.gain.value=Number($("volume").value)/100;
+
+ source.start();
+ $("status").textContent="Playing DJ effects preview...";
+ drawLiveWave();
+};
+
+$("stopBtn").onclick=()=>{
+ if(source)try{source.stop()}catch(e){}
+ $("status").textContent="Stopped.";
+};
+
+function drawLiveWave(){
+ if(!analyser)return;
+ const c=$("waveCanvas"),ctx=c.getContext("2d");
+ const data=new Uint8Array(analyser.frequencyBinCount);
+
+ function frame(){
+   animation=requestAnimationFrame(frame);
+   analyser.getByteFrequencyData(data);
+   ctx.clearRect(0,0,c.width,c.height);
+   ctx.beginPath();
+   ctx.strokeStyle="#ff1744";
+   ctx.lineWidth=3;
+   data.forEach((v,i)=>{
+     const x=i*c.width/data.length;
+     const y=c.height/2-(v/255)*c.height*.4;
+     if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+   });
+   ctx.stroke();
+ }
+ frame();
+}
+
+let tagCount=0;
+
+$("addTag").onclick=()=>{
+ tagCount++;
+
+ const div=document.createElement("div");
+ div.className="tag";
+
+ div.innerHTML=`
+ <input type="number" min="0" value="0" placeholder="Sec">
+ <input type="text" placeholder="Voice text">
+ <select>
+   <option>Deep DJ</option>
+   <option>Female DJ</option>
+   <option>Radio</option>
+   <option>Robot</option>
+ </select>
+ <button title="Remove">×</button>
+ `;
+
+ div.querySelector("button").onclick=()=>div.remove();
+ $("tags").appendChild(div);
+};
+
+$("artistName").addEventListener("change",()=>{
+ const name=$("artistName").value.trim();
+ if(name && $("tags").children.length===0){
+   $("addTag").click();
+   $("tags").lastElementChild.querySelectorAll("input")[1].value=name;
+ }
+});
+
+$("processBtn").onclick=async()=>{
+ if(!currentFile){
+   alert("Please upload a song first.");
+   return;
+ }
+
+ $("status").textContent="Processing audio...";
+
+ /*
+  Browser-only demo processing:
+  The complete production version should use an audio backend
+  such as FFmpeg/Web Audio + TTS to permanently render the
+  effects and voice tags into a downloadable MP3.
+ */
+
+ try{
+   await initAudio();
+
+   const buffer=await audioCtx.decodeAudioData(await currentFile.arrayBuffer());
+
+   // Create a WAV output with volume processing.
+   const offline=new OfflineAudioContext(
+     buffer.numberOfChannels,
+     buffer.length,
+     buffer.sampleRate
+   );
+
+   const src=offline.createBufferSource();
+   src.buffer=buffer;
+
+   const gain=offline.createGain();
+   gain.gain.value=Number($("volume").value)/100;
+
+   src.connect(gain);
+   gain.connect(offline.destination);
+   src.start();
+
+   const rendered=await offline.startRendering();
+   const wav=audioBufferToWav(rendered);
+
+   outputURL=URL.createObjectURL(wav);
+
+   $("outputPlayer").src=outputURL;
+   $("outputPlayer").style.display="block";
+
+   $("downloadBtn").style.display="block";
+   $("downloadBtn").onclick=()=>{
+     const a=document.createElement("a");
+     a.href=outputURL;
+     a.download="HUMMING_MAFIA_MIX.wav";
+     a.click();
+   };
+
+   $("status").textContent=
+    "Mix generated. Preview and download your audio.";
+
+ }catch(err){
+   console.error(err);
+   $("status").textContent="Audio processing failed.";
+ }
+};
+
+function audioBufferToWav(buffer){
+ const channels=buffer.numberOfChannels;
+ const sampleRate=buffer.sampleRate;
+ const length=buffer.length;
+ const bytesPerSample=2;
+ const dataLength=length*channels*bytesPerSample;
+ const ab=new ArrayBuffer(44+dataLength);
+ const view=new DataView(ab);
+
+ function writeString(offset,str){
+   for(let i=0;i<str.length;i++)
+     view.setUint8(offset+i,str.charCodeAt(i));
+ }
+
+ writeString(0,"RIFF");
+ view.setUint32(4,36+dataLength,true);
+ writeString(8,"WAVE");
+ writeString(12,"fmt ");
+ view.setUint32(16,16,true);
+ view.setUint16(20,1,true);
+ view.setUint16(22,channels,true);
+ view.setUint32(24,sampleRate,true);
+ view.setUint32(28,sampleRate*channels*bytesPerSample,true);
+ view.setUint16(32,channels*bytesPerSample,true);
+ view.setUint16(34,16,true);
+ writeString(36,"data");
+ view.setUint32(40,dataLength,true);
+
+ let offset=44;
+
+ for(let i=0;i<length;i++){
+   for(let ch=0;ch<channels;ch++){
+     let sample=buffer.getChannelData(ch)[i];
+     sample=Math.max(-1,Math.min(1,sample));
+     view.setInt16(
+       offset,
+       sample<0?sample*0x8000:sample*0x7fff,
+       true
+     );
+     offset+=2;
+   }
+ }
+
+ return new Blob([ab],{type:"audio/wav"});
+}
+</script>
+
+</body>
+</html>
