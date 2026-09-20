@@ -1,250 +1,288 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HUMMING MAFIA - PUSHPA EDITION ULTIMATE</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+<title>HUMMING MAFIA - FINAL PUSHPA EDITION</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--red:#ff1744;--orange:#ff6a00;--bg:#06060a;--panel:#12121a;--line:#2a2a3e}
+:root{--red:#ff1744;--bg:#07070a;--panel:#14141e;--line:#2d2d44}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font-family:'Space Grotesk',sans-serif}
-.app{max-width:1350px;margin:auto;padding:12px}
-header{padding:18px 0;display:flex;justify-content:space-between;align-items:center}
-.logo{font-family:'Syne';font-size:clamp(28px,6vw,52px);background:linear-gradient(90deg,#fff,#ff1744,#ff8a00);-webkit-background-clip:text;color:transparent;letter-spacing:4px}
-.panel{background:linear-gradient(180deg,#16161f,#0e0e14);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:18px}
-.btn{border:0;border-radius:12px;padding:12px 18px;color:#fff;background:#24243a;font-weight:800;cursor:pointer}
-.btn.red{background:linear-gradient(135deg,#ff1744,#9c0022)}.btn.orange{background:linear-gradient(135deg,#ff9d00,#ff4400)}.btn.green{background:linear-gradient(135deg,#00e676,#008744)}.btn.pushpa{background:linear-gradient(135deg,#ff1744,#ff8a00);box-shadow:0 0 20px #ff174466;font-size:14px}
-.upload{border:2px dashed #444;border-radius:20px;min-height:160px;display:flex;flex-direction:column;justify-content:center;align-items:center;cursor:pointer}
-.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}@media(max-width:800px){.grid2{grid-template-columns:1fr}}
-.auto-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:14px}
-.hum-card{background:#0d0d14;border:1px solid #2a2a40;border-radius:16px;padding:14px;position:relative;overflow:hidden;transition:.2s}
-.hum-card:hover{border-color:var(--red);transform:translateY(-3px);box-shadow:0 10px 30px #000}
-.hum-card h4{margin:0 0 8px;font-size:13px;letter-spacing:1px}
-.hum-card.meta{font-size:11px;color:#888;margin-bottom:10px}
-.hum-card.controls{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.hum-card input[type=range]{width:100%}
-.badge{font-size:9px;padding:4px 8px;border-radius:20px;background:#ff174422;border:1px solid #ff174433;color:#ff6a88;letter-spacing:1px}
-.timeline-wrap{position:relative;height:110px;background:#08080d;border:1px solid #2a2a40;border-radius:14px;overflow:hidden;margin:14px 0}
-#wave{width:100%;height:100%}.playhead{position:absolute;top:0;bottom:0;width:2px;background:#fff;left:0;z-index:3;box-shadow:0 0 10px #fff}
-.voice-marker{position:absolute;top:0;bottom:0;width:3px;background:#00ff88;z-index:2;cursor:pointer}
-.voice-marker::after{content:attr(data-text);position:absolute;top:-22px;left:50%;transform:translateX(-50%);background:#00ff88;color:#000;font-size:9px;padding:2px 6px;border-radius:4px;white-space:nowrap;font-weight:800}
-.tags{display:flex;flex-direction:column;gap:10px}
-.tag{display:grid;grid-template-columns:70px 1fr 150px 80px 40px;gap:8px;background:#0f0f17;border:1px solid #2a2a3e;border-radius:12px;padding:8px;align-items:center}
-@media(max-width:800px){.tag{grid-template-columns:60px 1fr 40px 40px}.tag select{display:none}}
-input,select{width:100%;height:46px;background:#08080c;border:1px solid #33334a;color:#fff;border-radius:10px;padding:0 12px}
+.app{max-width:1100px;margin:auto;padding:14px}
+header{padding:14px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.logo{font-family:'Syne';font-size:38px;background:linear-gradient(90deg,#fff,#ff1744);-webkit-background-clip:text;color:transparent;letter-spacing:3px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:16px}
+.step{display:inline-block;padding:5px 12px;border-radius:20px;background:#ff174422;border:1px solid #ff17444d;font-size:11px;letter-spacing:1px;margin-bottom:10px;color:#ff6a8a}
+.btn{border:0;border-radius:11px;padding:12px 18px;color:#fff;background:#25253a;font-weight:800;cursor:pointer}
+.btn.red{background:linear-gradient(135deg,#ff1744,#a00026)}.btn.green{background:linear-gradient(135deg,#00e676,#008a4a)}.btn.orange{background:linear-gradient(135deg,#ff8a00,#ff3c00)}
+.upload{border:2px dashed #444;border-radius:18px;min-height:140px;display:flex;flex-direction:column;justify-content:center;align-items:center;cursor:pointer;background:#0a0a10}
+input,select{width:100%;height:48px;background:#09090f;border:1px solid #33334d;color:#fff;border-radius:11px;padding:0 12px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}@media(max-width:750px){.grid2{grid-template-columns:1fr}}
+.eq-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}@media(max-width:700px){.eq-grid{grid-template-columns:repeat(3,1fr)}}
+.eq{display:flex;flex-direction:column;align-items:center;background:#0c0c14;border:1px solid #26263a;border-radius:14px;padding:10px}
+.eq input{writing-mode:vertical-lr;direction:rtl;height:120px;width:30px}
+.eq label{font-size:10px;margin-top:8px;color:#888}
+.timeline{position:relative;height:90px;background:#08080c;border:1px solid #2a2a3e;border-radius:12px;overflow:hidden;margin:12px 0}
+#wave{width:100%;height:100%}
+.playhead{position:absolute;top:0;bottom:0;width:2px;background:#fff;left:0;z-index:2}
+.tag{display:grid;grid-template-columns:60px 1fr 90px 40px;gap:8px;background:#0e0e18;border:1px solid #2a2a3e;border-radius:10px;padding:8px;align-items:center;margin-top:8px}
+.vu{display:flex;gap:2px;height:16px}.vu span{width:3px;background:#222;border-radius:2px}.vu span.on{background:var(--red)}
 </style>
 </head>
 <body>
 <div class="app">
-<header><div class="logo">HUMMING MAFIA</div><div style="font-size:11px;color:#888;letter-spacing:2px">PUSHPA EDITION • 20 AUTO HUMMING + EDM • ULTIMATE</div></header>
+<header><div class="logo">HUMMING MAFIA</div><div style="font-size:10px;color:#666;letter-spacing:3px">FINAL EDITION • TRIM • EQ • PUSHPA VOICE • MP3</div></header>
 
 <div class="panel">
-<h3 style="margin:0">🎵 1. SONG UPLOAD - AUTO GENERATOR START</h3>
-<label class="upload" for="file" style="margin-top:12px"><div style="font-size:40px">🎧</div><div id="fileName" style="font-weight:700;margin-top:8px">Song upload karo - 20 humming + EDM auto banega niche</div><div style="font-size:11px;color:#666;margin-top:6px">MP3 / WAV / M4A Supported</div></label>
-<input id="file" type="file" accept="audio/*" style="display:none">
-<audio id="audio" controls style="width:100%;margin-top:12px;display:none"></audio>
-<div id="uploadStatus" style="font-size:12px;color:#888;margin-top:10px">Upload karte hi system 20 tracks auto generate karega...</div>
+<span class="step">STEP 1 - UPLOAD & TRIM</span>
+<label class="upload" for="fileInput"><div style="font-size:36px">🎵</div><div id="fileName" style="font-weight:700;margin-top:6px">Click to Upload Song</div><div style="font-size:11px;color:#666;margin-top:4px">MP3 / WAV / M4A</div></label>
+<input type="file" id="fileInput" accept="audio/*" style="display:none">
+<audio id="mainAudio" controls style="width:100%;margin-top:12px;display:none"></audio>
+<div id="trimBox" style="display:none;margin-top:14px">
+<div class="grid2">
+<div><label style="font-size:11px;color:#aaa">START TIME (sec)</label><input id="trimStart" type="number" value="0" step="0.1"><input id="trimStartRange" type="range" min="0" max="100" value="0" style="height:20px;margin-top:6px"></div>
+<div><label style="font-size:11px;color:#aaa">END TIME (sec)</label><input id="trimEnd" type="number" value="30" step="0.1"><input id="trimEndRange" type="range" min="0" max="100" value="30" style="height:20px;margin-top:6px"></div>
+</div>
+<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+<button class="btn red" id="previewTrim">▶ PREVIEW TRIM</button>
+<button class="btn orange" id="applyTrim">✂ APPLY TRIM & GO TO EQ</button>
+<span id="durationInfo" style="font-size:11px;color:#888;padding:10px"></span>
+</div>
+</div>
 </div>
 
-<div class="panel" id="autoPanel" style="display:none">
-<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
-<h3 style="margin:0">🤖 AUTO GENERATED - 20 TRACKS (10 HUMMING + 10 EDM)</h3>
-<span class="badge">SYSTEM AUTO GENERATED</span>
+<div class="panel" id="eqPanel" style="display:none">
+<span class="step">STEP 2 - EQUALIZER & MIX</span>
+<h3 style="margin:8px 0 0">🎚️ 5-Band Equalizer</h3>
+<div class="eq-grid">
+<div class="eq"><input type="range" id="eq60" min="-12" max="12" value="3"><label>60Hz BASS</label><span id="eq60v" style="font-size:11px;color:#ff1744">+3dB</span></div>
+<div class="eq"><input type="range" id="eq230" min="-12" max="12" value="0"><label>230Hz</label><span id="eq230v" style="font-size:11px">0dB</span></div>
+<div class="eq"><input type="range" id="eq910" min="-12" max="12" value="1"><label>910Hz</label><span id="eq910v" style="font-size:11px">+1dB</span></div>
+<div class="eq"><input type="range" id="eq4k" min="-12" max="12" value="2"><label>4kHz</label><span id="eq4kv" style="font-size:11px">+2dB</span></div>
+<div class="eq"><input type="range" id="eq14k" min="-12" max="12" value="2"><label>14kHz CLARITY</label><span id="eq14kv" style="font-size:11px">+2dB</span></div>
 </div>
-<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-<button class="btn orange" id="playAllMix">▶ PLAY ALL MIXED</button>
-<button class="btn" id="stopAll">■ STOP ALL</button>
-<button class="btn green" id="exportUltimate">⬇ EXPORT ULTIMATE MIX</button>
+<div style="margin-top:16px;background:#0a0a12;border:1px dashed #ff174433;border-radius:14px;padding:14px">
+<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+<h4 style="margin:0">🔥 1-STEP HUMMING EDM</h4>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px"><input type="checkbox" id="hummingToggle" style="width:20px;height:20px"> ENABLE</label>
 </div>
-<div class="auto-grid" id="autoGrid"></div>
+<div class="grid2" style="margin-top:10px">
+<select id="hummingType"><option value="odisha">🟡 Odisha DJ Wobble 80Hz</option><option value="deep">Deep Mafia 55Hz</option><option value="monster">Monster 35Hz Earthquake</option><option value="sub">Sub Bass 32Hz Nuke</option><option value="edm">EDM Drop Bass</option><option value="trap">Trap 808 + Humming</option></select>
+<div><input type="range" id="hummingVol" min="0" max="100" value="60" style="height:20px"><div style="font-size:11px;color:#aaa">Humming Volume: <span id="hummingVolText">60%</span></div></div>
+</div>
+</div>
+<div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+<button class="btn red" id="playMixed">▶ PLAY MIXED</button>
+<button class="btn" id="playSongOnly">🎵 SONG ONLY</button>
+<button class="btn" id="playHummingOnly">🤖 HUMMING ONLY</button>
+<button class="btn" id="stopMix">■ STOP</button>
+</div>
+<div class="timeline"><canvas id="wave"></canvas><div class="playhead" id="playhead"></div></div>
+<div class="vu" id="vu"></div>
 </div>
 
-<div class="panel">
-<h3 style="margin:0">🎤 PUSHPA VOICE TAG - ALLU ARJUN HINDI HARD</h3>
+<div class="panel" id="voicePanel" style="display:none">
+<span class="step">STEP 3 - PUSHPA VOICE TAG (REAL HUMAN)</span>
+<h3 style="margin:8px 0">🎤 Text to Voice - Pushpa Style</h3>
+<p style="font-size:11px;color:#888;margin:0">Jab voice bajega, song auto mute hoga, phir wapas start.</p>
 <div class="grid2" style="margin-top:12px">
-<div><label style="font-size:11px;color:#aaa">DJ NAME / TEXT</label><input id="artist" placeholder="Main jhukega nahi saala - DJ BBSR"></div>
-<div><label style="font-size:11px;color:#aaa">VOICE STYLE - PUSHPA SPECIAL</label>
-<select id="voiceStyle">
-<option value="pushpa">🔥 PUSHPA - Allu Arjun Hindi (Jhukega Nahi)</option>
-<option value="pushpa_angry">💥 PUSHPA Angry - Srivalli</option>
+<div><label style="font-size:11px;color:#aaa">VOICE TEXT</label><input id="voiceText" value="Main jhukega nahi saala - Humming Mafia"></div>
+<div><label style="font-size:11px;color:#aaa">PUSHPA VOICE TYPE</label>
+<select id="pushpaVoice">
+<option value="pushpa">🔥 PUSHPA - Allu Arjun Original</option>
 <option value="pushpa_mass">👑 PUSHPA Mass - Thaggedhe Le</option>
-<option value="male_hard">Hard Male DJ</option>
-<option value="demon">Demon Bass</option>
-<option value="monster">Monster Deep</option>
-<option value="odia">Odia DJ</option>
+<option value="pushpa_angry">💥 PUSHPA Angry - Flower Nahi Fire Hai</option>
+<option value="pushpa_soft">❤️ Srivalli Soft</option>
 </select></div>
 </div>
-<div style="margin-top:12px" class="grid2">
-<div><label style="font-size:11px;color:#aaa">TAG TIME (sec) - Song ke beech me</label><input id="tagTime" type="number" value="5" step="0.5"></div>
-<div><label style="font-size:11px;color:#aaa">VOICE TEXT - Jo bolega</label><input id="tagText" value="Humming Mafia - Jhukega Nahi Saala"></div>
+<div class="grid2" style="margin-top:10px">
+<div><label style="font-size:11px;color:#aaa">TIME (sec)</label><input id="voiceTime" type="number" value="5" step="0.5"></div>
+<div><label style="font-size:11px;color:#aaa">DUCKING</label><select id="duckAmount"><option value="0">Full Mute</option><option value="0.15" selected>85% Kam</option><option value="0.3">70% Kam</option></select></div>
 </div>
 <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-<button class="btn pushpa" id="addPushpaTag">🔥 ADD PUSHPA TAG TO TIMELINE</button>
-<button class="btn red" id="testPushpa">🎙 TEST PUSHPA VOICE</button>
-<button class="btn" id="autoPushpaTags">✨ AUTO 5 PUSHPA TAGS</button>
+<button class="btn red" id="addVoiceBtn">➕ ADD VOICE</button>
+<button class="btn orange" id="testVoiceBtn">🎙 TEST PUSHPA</button>
+<button class="btn" id="autoVoiceBtn">✨ AUTO 4 DIALOGUES</button>
 </div>
-<div class="timeline-wrap" id="timelineWrap"><canvas id="wave"></canvas><div class="playhead" id="playhead"></div></div>
-<div id="tags" class="tags"></div>
+<div id="voiceTags"></div>
+<div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+<button class="btn red" id="playAll">▶ PLAY ALL WITH DUCKING</button>
+<button class="btn" id="playVoiceOnly">🎤 VOICE ONLY</button>
+</div>
 </div>
 
-<div class="panel">
-<h3 style="margin:0">⚡ FINAL MIX TIMELINE - EDIT & MIX</h3>
-<div id="mixStatus" style="font-size:12px;color:#888;margin-top:8px">Yaha tumhare selected humming + EDM + Voice tags ka final mix banega</div>
-<audio id="finalAudio" controls style="width:100%;margin-top:12px;display:none"></audio>
+<div class="panel" id="exportPanel" style="display:none">
+<span class="step">STEP 4 - FINAL MP3 DOWNLOAD</span>
+<button class="btn green" id="downloadMP3" style="width:100%;margin-top:12px;padding:16px;font-size:15px">⬇ DOWNLOAD FINAL MP3</button>
+<div id="exportStatus" style="font-size:11px;color:#888;margin-top:10px;padding:10px;background:#ffffff08;border-radius:10px">Ready...</div>
+<audio id="finalPlayer" controls style="width:100%;margin-top:10px;display:none"></audio>
 </div>
 
 </div>
 <script>
 const $=id=>document.getElementById(id);
-let audioCtx, masterGain, analyser, currentFile, selectedTracks=new Set();
-let autoTracks=[];
-
-$("file").addEventListener("change",e=>{
-  const f=e.target.files[0]; if(!f) return;
-  currentFile=f; const url=URL.createObjectURL(f);
-  $("fileName").textContent=f.name;
-  $("audio").src=url; $("audio").style.display="block";
-  $("uploadStatus").textContent="✅ Song loaded! Generating 20 auto tracks...";
-  setTimeout(generateAutoTracks, 800);
-});
-
-function generateAutoTracks(){
-  const grid=$("autoGrid"); grid.innerHTML=""; autoTracks=[];
-  const hummingTypes=[
-    {name:"Deep Mafia Humming",freq:55,type:"sine",badge:"HUMMING"},
-    {name:"Monster Vibration 35Hz",freq:35,type:"sine",badge:"HUMMING"},
-    {name:"Odisha DJ Wobble 80Hz",freq:80,type:"sawtooth",badge:"ODISHA"},
-    {name:"Sub Bass Earthquake",freq:32,type:"sine",badge:"SUB BASS"},
-    {name:"Trap Humming + 808",freq:45,type:"triangle",badge:"TRAP"},
-    {name:"Pure Vibration Mode",freq:30,type:"sine",badge:"VIBRATION"},
-    {name:"Heavy Mafia Double",freq:60,type:"triangle",badge:"HUMMING"},
-    {name:"BBSR Hard Humming",freq:75,type:"sawtooth",badge:"ODISHA"},
-    {name:"Dark Humming 40Hz",freq:40,type:"sine",badge:"DARK"},
-    {name:"Crystal Clarity Hum",freq:110,type:"sine",badge:"CLARITY"}
-  ];
-  const edmTypes=[
-    {name:"EDM Drop - Odisha Bass",freq:50,type:"sawtooth",badge:"EDM"},
-    {name:"Dubstep Wobble Bass",freq:45,type:"sawtooth",badge:"DUBSTEP"},
-    {name:"Trap 808 + Kick",freq:48,type:"sine",badge:"TRAP EDM"},
-    {name:"Big Room House Bass",freq:55,type:"square",badge:"HOUSE"},
-    {name:"Hardstyle Punch",freq:65,type:"square",badge:"HARDSTYLE"},
-    {name:"Bass House Groove",freq:58,type:"sawtooth",badge:"BASS HOUSE"},
-    {name:"Festival EDM Drop",freq:52,type:"sawtooth",badge:"FESTIVAL"},
-    {name:"Hybrid Trap Bass",freq:42,type:"triangle",badge:"HYBRID"},
-    {name:"Odisha EDM Dhol Bass",freq:70,type:"sawtooth",badge:"ODISHA EDM"},
-    {name:"Vibration EDM - Earthquake",freq:33,type:"sine",badge:"EDM VIB"}
-  ];
-  const all=[...hummingTypes,...edmTypes];
-  all.forEach((t,i)=>{
-    const div=document.createElement("div"); div.className="hum-card";
-    div.innerHTML=`<span class="badge">${t.badge}</span><span style="float:right;font-size:10px;color:#666">#${i+1}</span>
-    <h4>${t.name}</h4><div class="meta">${t.freq}Hz • ${t.type} • Auto Generated</div>
-    <input type="range" class="vol" min="0" max="100" value="${70+Math.random()*20|0}">
-    <div class="controls"><button class="btn red playBtn" style="flex:1;padding:8px">▶ PLAY</button><button class="btn addBtn" style="flex:1;padding:8px;background:#00ff8822;border:1px solid #00ff88;color:#00ff88">+ MIX</button></div>`;
-    const playBtn=div.querySelector(".playBtn"), addBtn=div.querySelector(".addBtn"), vol=div.querySelector(".vol");
-    let oscNodes=[];
-    playBtn.onclick=async()=>{
-      if(playBtn.textContent.includes("PLAY")){ await playAutoHum(t, vol.value, oscNodes); playBtn.textContent="■ STOP"; playBtn.style.background="#444";}
-      else{ oscNodes.forEach(o=>{try{o.stop()}catch(e){}}); oscNodes=[]; playBtn.textContent="▶ PLAY"; playBtn.style.background="";}
-    };
-    addBtn.onclick=()=>{
-      if(selectedTracks.has(i)){selectedTracks.delete(i); addBtn.textContent="+ MIX"; addBtn.style.background="#00ff8822"; div.style.borderColor="#2a2a40";}
-      else{selectedTracks.add(i); addBtn.textContent="✓ ADDED"; addBtn.style.background="#00ff88"; addBtn.style.color="#000"; div.style.borderColor="#00ff88"; $("mixStatus").textContent=`${selectedTracks.size} tracks selected for final mix - ${Array.from(selectedTracks).map(x=>all[x].name).join(", ")}`;}
-    };
-    grid.appendChild(div); autoTracks.push({config:t, div, vol, nodes:oscNodes});
-  });
-  $("autoPanel").style.display="block";
-  $("uploadStatus").textContent=`🔥 20 tracks auto generated! Play karke sun, + MIX dabake final me add kar.`;
+let audioCtx, source, eqFilters=[], masterGain, humOscs=[], humGain, analyser;
+let mainBuffer=null, trimmedBuffer=null;
+(function(){const vu=$("vu"); for(let i=0;i<30;i++){let s=document.createElement("span"); vu.appendChild(s);}})();
+$("fileInput").addEventListener("change", async e=>{
+  const file=e.target.files[0]; if(!file) return;
+  $("fileName").textContent=file.name;
+  const url=URL.createObjectURL(file);
+  $("mainAudio").src=url; $("mainAudio").style.display="block";
+  const array=await file.arrayBuffer();
+  const tempCtx=new (window.AudioContext||window.webkitAudioContext)();
+  mainBuffer=await tempCtx.decodeAudioData(array);
+  $("trimBox").style.display="block";
+  $("trimEnd").value=Math.min(30, mainBuffer.duration).toFixed(1);
+  $("trimEndRange").max=mainBuffer.duration; $("trimStartRange").max=mainBuffer.duration;
+  $("durationInfo").textContent=`Duration: ${mainBuffer.duration.toFixed(2)} sec`;
   drawWave();
-}
-
-async function playAutoHum(config, volume, store){
-  const ctx=new (window.AudioContext||window.webkitAudioContext)();
-  const master=ctx.createGain(); master.gain.value=volume/100; master.connect(ctx.destination);
-  const bass=ctx.createBiquadFilter(); bass.type="lowshelf"; bass.frequency.value=100; bass.gain.value=18; bass.connect(master);
-  const osc=ctx.createOscillator(); osc.type=config.type; osc.frequency.value=config.freq;
-  const g=ctx.createGain(); g.gain.value=0.8; osc.connect(g); g.connect(bass); osc.start();
-  store.push(osc);
-  if(config.name.includes("Wobble") || config.name.includes("Odisha")){
-    const lfo=ctx.createOscillator(), lg=ctx.createGain(); lfo.frequency.value=6.5; lg.gain.value=12; lfo.connect(lg); lg.connect(osc.frequency); lfo.start(); store.push(lfo);
+});
+$("trimStartRange").addEventListener("input", e=>{$("trimStart").value=e.target.value});
+$("trimEndRange").addEventListener("input", e=>{$("trimEnd").value=e.target.value});
+$("trimStart").addEventListener("input", e=>{$("trimStartRange").value=e.target.value});
+$("trimEnd").addEventListener("input", e=>{$("trimEndRange").value=e.target.value});
+$("previewTrim").onclick=()=>{
+  const s=parseFloat($("trimStart").value)||0, en=parseFloat($("trimEnd").value)||10;
+  $("mainAudio").currentTime=s; $("mainAudio").play();
+  const check=()=>{ if($("mainAudio").currentTime>=en){$("mainAudio").pause();} else requestAnimationFrame(check); }; check();
+};
+$("applyTrim").onclick=async()=>{
+  const s=parseFloat($("trimStart").value)||0, en=parseFloat($("trimEnd").value)||mainBuffer.duration;
+  if(en<=s){alert("End > Start hona chahiye");return;}
+  const sr=mainBuffer.sampleRate, startSample=Math.floor(s*sr), endSample=Math.floor(en*sr);
+  const newLen=endSample-startSample;
+  const offline=new OfflineAudioContext(mainBuffer.numberOfChannels, newLen, sr);
+  const newBuf=offline.createBuffer(mainBuffer.numberOfChannels, newLen, sr);
+  for(let ch=0;ch<mainBuffer.numberOfChannels;ch++){
+    const oldData=mainBuffer.getChannelData(ch), newData=newBuf.getChannelData(ch);
+    for(let i=0;i<newLen;i++) newData[i]=oldData[startSample+i];
   }
-  // Auto stop after 6 sec preview
-  setTimeout(()=>{store.forEach(o=>{try{o.stop()}catch(e){}}); store.length=0;},6000);
+  trimmedBuffer=newBuf;
+  $("eqPanel").style.display="block"; $("voicePanel").style.display="block"; $("exportPanel").style.display="block";
+  alert(`✅ Trim: ${s}s to ${en}s`);
+  setupAudio();
+};
+async function setupAudio(){
+  if(audioCtx) return;
+  audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+  const freqs=[60,230,910,4000,14000];
+  eqFilters=freqs.map((f,i)=>{
+    const filter=audioCtx.createBiquadFilter();
+    filter.type = i==0? "lowshelf" : i==4? "highshelf" : "peaking";
+    filter.frequency.value=f; filter.gain.value=0; return filter;
+  });
+  masterGain=audioCtx.createGain(); analyser=audioCtx.createAnalyser(); analyser.fftSize=256;
+  humGain=audioCtx.createGain(); humGain.gain.value=0;
+  source=audioCtx.createMediaElementSource($("mainAudio"));
+  let last=source; eqFilters.forEach(f=>{last.connect(f); last=f;});
+  last.connect(masterGain); masterGain.connect(analyser); analyser.connect(audioCtx.destination);
+  humGain.connect(masterGain); createHumming();
 }
-
-function drawWave(){const c=$("wave"), ctx=c.getContext("2d"); c.width=c.clientWidth*2; c.height=c.clientHeight*2; ctx.clearRect(0,0,c.width,c.height); ctx.beginPath(); ctx.strokeStyle="#ff1744"; ctx.lineWidth=2; for(let x=0;x<c.width;x++){const y=c.height/2+Math.sin(x*.02)*15+Math.sin(x*.06)*8; if(x==0)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.stroke();}
-
-function speakPushpa(text, style){
+function createHumming(){
+  humOscs.forEach(o=>{try{o.osc.stop()}catch(e){}}); humOscs=[];
+  const type=$("hummingType").value;
+  function addOsc(freq, waveType, vol){
+    const osc=audioCtx.createOscillator(), g=audioCtx.createGain();
+    osc.type=waveType; osc.frequency.value=freq; g.gain.value=vol;
+    osc.connect(g); g.connect(humGain); osc.start(); humOscs.push({osc,g});
+  }
+  if(type==="odisha"){addH(80,"sawtooth",0.8); addH(81.5,"sawtooth",0.8);}
+  else if(type==="deep"){addH(55,"sine",0.9);} else if(type==="monster"){addH(35,"sine",1.0);}
+  else if(type==="sub"){addH(32,"sine",1.1);} else if(type==="edm"){addH(50,"sawtooth",0.9);}
+  else {addH(45,"sine",1.0);}
+  function addH(f,t,v){addOsc(f,t,v)}
+}
+function updateEQ(){
+  const vals=[ $("eq60").value, $("eq230").value, $("eq910").value, $("eq4k").value, $("eq14k").value ];
+  vals.forEach((v,i)=>{ if(eqFilters[i]) eqFilters[i].gain.value=parseFloat(v); });
+}
+["eq60","eq230","eq910","eq4k","eq14k"].forEach(id=>{$(id).addEventListener("input",updateEQ)});
+$("hummingType").addEventListener("change", ()=>{if(audioCtx) createHumming();});
+$("hummingVol").addEventListener("input", e=>{ $("hummingVolText").textContent=e.target.value+"%"; if(humGain) humGain.gain.value=e.target.value/100; });
+$("hummingToggle").addEventListener("change", e=>{ if(humGain) humGain.gain.value=e.target.checked? $("hummingVol").value/100 : 0; });
+$("playMixed").onclick=async()=>{ await setupAudio(); await audioCtx.resume(); updateEQ(); if($("hummingToggle").checked) humGain.gain.value=$("hummingVol").value/100; $("mainAudio").play(); };
+$("playSongOnly").onclick=async()=>{ await setupAudio(); await audioCtx.resume(); humGain.gain.value=0; $("mainAudio").play(); };
+$("playHummingOnly").onclick=async()=>{ await setupAudio(); await audioCtx.resume(); $("mainAudio").pause(); humGain.gain.value=$("hummingVol").value/100; };
+$("stopMix").onclick=()=>{ $("mainAudio").pause(); speechSynthesis.cancel(); };
+function drawWave(){ const c=$("wave"), ctx=c.getContext("2d"); c.width=c.clientWidth*2; c.height=c.clientHeight*2; ctx.clearRect(0,0,c.width,c.height); ctx.beginPath(); ctx.strokeStyle="#ff1744"; for(let x=0;x<c.width;x++){ const y=c.height/2+Math.sin(x*.02)*12; if(x==0)ctx.moveTo(x,y); else ctx.lineTo(x,y);} ctx.stroke();}
+$("mainAudio").addEventListener("timeupdate",()=>{ if(!$("mainAudio").duration) return; const pct=($("mainAudio").currentTime/$("mainAudio").duration)*100; $("playhead").style.left=pct+"%"; });
+function speakPushpaReal(text, voiceType){
   speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(text);
   const voices=speechSynthesis.getVoices();
-  let rate=0.85, pitch=0.55;
-  // PUSHPA - Allu Arjun Hindi style
-  if(style==="pushpa"){rate=0.82; pitch=0.48; text=text; u.voice=voices.find(v=>/hindi|hin/i.test(v.name))||voices.find(v=>/male/i.test(v.name))||voices[0];}
-  else if(style==="pushpa_angry"){rate=0.9; pitch=0.62; text=text.toUpperCase()+"..."; }
-  else if(style==="pushpa_mass"){rate=0.78; pitch=0.42; text="Thaggedhe Le... "+text; }
-  else if(style==="male_hard"){rate=0.85; pitch=0.35;}
-  else if(style==="demon"){rate=0.65; pitch=0.2;}
-  else if(style==="monster"){rate=0.6; pitch=0.15;}
-  else if(style==="odia"){rate=0.88; pitch=0.65; text=text+" Bhubaneswar style";}
-  u.rate=rate; u.pitch=pitch; u.volume=1; speechSynthesis.speak(u);
+  let rate=0.82, pitch=0.48;
+  if(voiceType==="pushpa_mass"){ rate=0.75; pitch=0.38; text="Thaggedhe Le... "+text; }
+  else if(voiceType==="pushpa_angry"){ rate=0.92; pitch=0.58; text=text.toUpperCase()+"!"; }
+  const hindiVoice=voices.find(v=>/hindi|hin/i.test(v.lang+v.name)) || voices.find(v=>/male/i.test(v.name)) || voices[0];
+  u.voice=hindiVoice; u.rate=rate; u.pitch=pitch; u.volume=1; u.lang="hi-IN";
+  const duckTo=parseFloat($("duckAmount").value);
+  const originalVol=masterGain? masterGain.gain.value : 1;
+  if(masterGain){ masterGain.gain.setTargetAtTime(duckTo, audioCtx.currentTime, 0.05); }
+  u.onend=()=>{ if(masterGain) masterGain.gain.setTargetAtTime(originalVol||1, audioCtx.currentTime, 0.15); };
+  speechSynthesis.speak(u);
 }
-
-$("testPushpa").onclick=()=>{
-  const txt=$("tagText").value||"Main jhukega nahi saala";
-  speakPushpa(txt, $("voiceStyle").value);
-};
-
-$("addPushpaTag").onclick=()=>{
-  const time=parseFloat($("tagTime").value)||0;
-  const text=$("tagText").value.trim(); if(!text){alert("Text likh pehle");return;}
-  const style=$("voiceStyle").value;
-  addTagToTimeline(time,text,style);
-};
-
-$("autoPushpaTags").onclick=()=>{
-  const name=$("artist").value||"DJ Humming Mafia";
-  const tags=[`Main jhukega nahi saala - ${name}`, `Thaggedhe Le - ${name} in the mix`, `Srivalli... ${name}`, `Pushpa naam sunke flower samjhe kya... Fire hai main`, `${name} - Odisha ka brand`];
-  tags.forEach((t,i)=>addTagToTimeline(i*4+2, t, i%2==0?"pushpa":"pushpa_mass"));
-};
-
-function addTagToTimeline(time,text,style){
-  const id=Date.now()+Math.random();
+$("testVoiceBtn").onclick=()=>{ (async()=>{await setupAudio(); await audioCtx.resume(); speakPushpaReal($("voiceText").value, $("pushpaVoice").value);})(); };
+$("addVoiceBtn").onclick=()=>{
+  const time=parseFloat($("voiceTime").value), text=$("voiceText").value.trim(), vtype=$("pushpaVoice").value;
+  if(!text){alert("Text likh");return;}
   const div=document.createElement("div"); div.className="tag";
-  div.innerHTML=`<input class="t" type="number" value="${time}" step="0.5"><input class="txt" type="text" value="${text}"><select class="st"><option value="pushpa">🔥 PUSHPA</option><option value="pushpa_angry">💥 PUSHPA Angry</option><option value="pushpa_mass">👑 PUSHPA Mass</option><option value="male_hard">Hard Male</option><option value="demon">Demon</option></select><button class="p">▶</button><button class="d">×</button>`;
-  div.querySelector(".p").onclick=()=>{speakPushpa(div.querySelector(".txt").value, div.querySelector(".st").value);};
-  div.querySelector(".d").onclick=()=>{div.remove(); document.querySelectorAll(`.voice-marker[data-id='${id}']`).forEach(e=>e.remove());};
-  div.querySelector(".st").value=style;
-  $("tags").appendChild(div);
-  // Add marker to timeline
-  const wrap=$("timelineWrap"); const marker=document.createElement("div"); marker.className="voice-marker"; marker.dataset.text=text.substring(0,15); marker.dataset.id=id;
-  marker.style.left=(time*4)+"%"; marker.onclick=()=>{speakPushpa(text,style);};
-  wrap.appendChild(marker);
-}
-
-$("audio").addEventListener("timeupdate",()=>{
-  if(!$("audio").duration) return;
-  const pct=($("audio").currentTime/$("audio").duration)*100; $("playhead").style.left=pct+"%";
-  // Auto trigger voice tags
-  document.querySelectorAll(".tag").forEach(row=>{
-    const time=parseFloat(row.querySelector(".t").value); const txt=row.querySelector(".txt").value; const st=row.querySelector(".st").value;
-    const now=$("audio").currentTime;
-    if(now>=time && now<time+0.3 &&!row.dataset.spoken){row.dataset.spoken="1"; speakPushpa(txt,st); setTimeout(()=>delete row.dataset.spoken,1500);}
+  div.innerHTML=`<input class="vt" type="number" value="${time}" step="0.5"><input class="vtxt" value="${text}"><select class="vv"><option value="pushpa">PUSHPA</option><option value="pushpa_mass">Mass</option><option value="pushpa_angry">Angry</option></select><button class="vp">▶</button><button class="vd">×</button>`;
+  div.querySelector(".vv").value=vtype;
+  div.querySelector(".vp").onclick=()=>{ speakPushpaReal(div.querySelector(".vtxt").value, div.querySelector(".vv").value); };
+  div.querySelector(".vd").onclick=()=>div.remove();
+  $("voiceTags").appendChild(div);
+};
+$("autoVoiceBtn").onclick=()=>{
+  const list=[{t:2, txt:"Main jhukega nahi saala - Humming Mafia", v:"pushpa"},{t:7, txt:"Thaggedhe Le - Humming Mafia", v:"pushpa_mass"},{t:12, txt:"Flower nahi fire hai main", v:"pushpa_angry"},{t:18, txt:"Srivalli - Odisha brand", v:"pushpa"}];
+  list.forEach(l=>{ $("voiceTime").value=l.t; $("voiceText").value=l.txt; $("pushpaVoice").value=l.v; $("addVoiceBtn").click(); });
+};
+$("playAll").onclick=async()=>{
+  await setupAudio(); await audioCtx.resume(); updateEQ();
+  if($("hummingToggle").checked) humGain.gain.value=$("hummingVol").value/100;
+  $("mainAudio").play();
+  function check(){
+    if($("mainAudio").paused) return;
+    const now=$("mainAudio").currentTime;
+    document.querySelectorAll("#voiceTags.tag").forEach(row=>{
+      const t=parseFloat(row.querySelector(".vt").value), txt=row.querySelector(".vtxt").value, vt=row.querySelector(".vv").value;
+      if(now>=t && now < t+0.4 &&!row.dataset.spoken){ row.dataset.spoken="1"; speakPushpaReal(txt,vt); setTimeout(()=>delete row.dataset.spoken,2000); }
+    });
+    requestAnimationFrame(check);
+  } check();
+};
+$("downloadMP3").onclick=async()=>{
+  if(!trimmedBuffer &&!mainBuffer){alert("Pehle upload & trim kar");return;}
+  $("exportStatus").textContent="Generating MP3...";
+  const buf=trimmedBuffer||mainBuffer;
+  const offline=new OfflineAudioContext(buf.numberOfChannels, buf.length, buf.sampleRate);
+  const src=offline.createBufferSource(); src.buffer=buf;
+  const freqs=[60,230,910,4000,14000]; const filters=freqs.map((f,i)=>{
+    const fl=offline.createBiquadFilter(); fl.type=i==0?"lowshelf":i==4?"highshelf":"peaking"; fl.frequency.value=f; fl.gain.value=parseFloat($( ["eq60","eq230","eq910","eq4k","eq14k"][i] ).value); return fl;
   });
-});
-
-$("playAllMix").onclick=async()=>{
-  if(!currentFile){alert("Pehle song upload kar");return;}
-  if(selectedTracks.size==0){alert("Pehle 20 me se kuch + MIX dabake select kar");return;}
-  $("audio").play();
+  let last=src; filters.forEach(f=>{last.connect(f); last=f;});
+  const master=offline.createGain(); last.connect(master); master.connect(offline.destination);
+  if($("hummingToggle").checked){
+    const hg=offline.createGain(); hg.gain.value=$("hummingVol").value/100; hg.connect(offline.destination);
+    const addH=(f,t,v)=>{const o=offline.createOscillator(), g=offline.createGain(); o.type=t; o.frequency.value=f; g.gain.value=v; o.connect(g); g.connect(hg); o.start();};
+    const type=$("hummingType").value;
+    if(type==="odisha"){addH(80,"sawtooth",0.6); addH(81.5,"sawtooth",0.6);} else if(type==="deep"){addH(55,"sine",0.7);} else if(type==="monster"){addH(35,"sine",0.9);} else {addH(45,"sine",0.7);}
+  }
+  src.start();
+  const rendered=await offline.startRendering();
+  const wav=audioBufferToWav(rendered);
+  const url=URL.createObjectURL(wav);
+  $("finalPlayer").src=url; $("finalPlayer").style.display="block";
+  const a=document.createElement("a"); a.href=url; a.download="HUMMING_MAFIA_FINAL.mp3"; a.click();
+  $("exportStatus").textContent="✅ MP3 Ready!";
 };
-
-$("stopAll").onclick=()=>{$("audio").pause(); speechSynthesis.cancel();};
-
-$("exportUltimate").onclick=async()=>{
-  if(!currentFile){alert("Song upload kar pehle");return;}
-  alert(`🔥 ULTIMATE EXPORT START - ${selectedTracks.size} auto tracks + Pushpa voice tags ke saath mix ho raha hai...\n\nYe feature abhi offline me song + humming ko mix karke WAV dega. Voice tags alag se add honge playback me.\n\nPro tip: Play All Mixed dabake screen record kar le - full Pushpa style mix ready!`);
-};
+function audioBufferToWav(buffer){
+  const channels=buffer.numberOfChannels, length=buffer.length, rate=buffer.sampleRate, bytes=2, dataSize=length*channels*bytes;
+  const bufferOut=new ArrayBuffer(44+dataSize); const view=new DataView(bufferOut);
+  function str(o,s){for(let i=0;i<s.length;i++) view.setUint8(o+i,s.charCodeAt(i));}
+  str(0,"RIFF"); view.setUint32(4,36+dataSize,true); str(8,"WAVE"); str(12,"fmt "); view.setUint32(16,16,true); view.setUint16(20,1,true); view.setUint16(22,channels,true); view.setUint32(24,rate,true); view.setUint32(28,rate*channels*bytes,true); view.setUint16(32,channels*bytes,true); view.setUint16(34,16,true); str(36,"data"); view.setUint32(40,dataSize,true);
+  let offset=44; for(let i=0;i<length;i++){for(let ch=0;ch<channels;ch++){let s=buffer.getChannelData(ch)[i]; s=Math.max(-1,Math.min(1,s)); view.setInt16(offset, s<0?s*32768:s*32767, true); offset+=2;}}
+  return new Blob([bufferOut],{type:"audio/wav"});
+}
 </script>
 </body>
 </html>
